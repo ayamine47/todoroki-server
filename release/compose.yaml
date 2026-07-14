@@ -2,6 +2,8 @@ services:
   app:
     image: ghcr.io/reversed-r/todoroki-server:latest
     restart: always
+    env_file:
+      - .env
     networks:
       - app-network
       - traefik
@@ -13,7 +15,7 @@ services:
       traefik.docker.network: "traefik"
       traefik.http.services.todoroki-server.loadbalancer.server.scheme: http
       traefik.http.services.todoroki-server.loadbalancer.server.port: 8080
-      traefik.http.routers.todoroki-server.rule: Host(`todo-api.reversed-r.dev`)
+      traefik.http.routers.todoroki-server.rule: Host(`${API_URL}`)
       traefik.http.routers.todoroki-server.entrypoints: websecure,web
       traefik.http.routers.todoroki-server.tls.certResolver: leresolver
     environment:

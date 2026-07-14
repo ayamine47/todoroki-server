@@ -1,4 +1,4 @@
-FROM rust:1.87-bullseye
+FROM rust:1.94-bullseye
 
 WORKDIR /app
 
